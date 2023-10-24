@@ -48,7 +48,7 @@ export const deletePost = createAsyncThunk(
     try {
       const res = await axios.delete(`${POST_URL}/${id}`);
       // return res.data 这里删除之后请求返回的是空对象，所以后面addcase的aciton.payload拿不到id
-      // 这里就人为返回一下数据
+      // 这里就人为手动返回一下数据
       if (res?.status === 200) return postData;
       return `${res?.status}: ${res?.statusText}`;
     } catch (e) {

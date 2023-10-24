@@ -25,6 +25,9 @@ export const createNewPost = createAsyncThunk(
 );
 const postSlice = createSlice({
   name: "posts",
+  // createSlice 的 name 属性被设置为 'posts'，这就意味着这个 slice 的状态会被存储在 state 对象的 posts 属性里。
+  // reducer 函数是操作 state 对象的，而这里的state 对象实际上就是指向 'posts' slice 的。
+  // 因此，在 reducer 函数里的 state 已经是这个 'posts' slice 的局部状态，而不是整个应用的全局 state。
   initialState,
   reducers: {
     addPost: {
@@ -102,6 +105,7 @@ const postSlice = createSlice({
   },
 });
 
+// state.posts 是一个对整个 "posts" slice（由 createSlice 创建）的引用。这个 slice 包括 posts、status 和 error 这几个平级的属性。
 export const allPosts = (state) => state.posts.posts;
 export const getPostsStatus = (state) => state.posts.status;
 export const getPostsError = (state) => state.posts.error;
